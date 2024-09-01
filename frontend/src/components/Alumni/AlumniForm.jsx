@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { create, update, getById } from '../../services/api';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const AlumniForm = ({ isEdit = false }) => {
   const [alumni, setAlumni] = useState({ name: '', graduation_year: '', field_of_study: '' });
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     if (isEdit) {
       fetchAlumni();
     }
-  }, []);
+  }, [isEdit, id]);
 
   const fetchAlumni = async () => {
     const response = await getById('alumni', id);
@@ -29,7 +29,7 @@ const AlumniForm = ({ isEdit = false }) => {
     } else {
       await create('alumni', alumni);
     }
-    history.push('/alumni');
+    navigate('/alumni'); 
   };
 
   return (
