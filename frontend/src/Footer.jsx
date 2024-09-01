@@ -1,11 +1,11 @@
 import React from 'react';
+import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        {/* Company Information */}
+
         <div>
           <h2 className="text-xl font-bold mb-4">About Us</h2>
           <p className="text-gray-400">
@@ -13,7 +13,6 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Navigation Links */}
         <div>
           <h2 className="text-xl font-bold mb-4">Quick Links</h2>
           <ul>
@@ -24,20 +23,24 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Social Media Links */}
         <div>
           <h2 className="text-xl font-bold mb-4">Follow Us</h2>
           <ul className="flex space-x-4">
-            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white"><i className="fab fa-facebook-f"></i></a></li>
-            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white"><i className="fab fa-twitter"></i></a></li>
-            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white"><i className="fab fa-instagram"></i></a></li>
-            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white"><i className="fab fa-linkedin-in"></i></a></li>
+            <li>
+              <a href="https://www.instagram.com/__anuraagg?igsh=eXI1MHlqa2R5Z2s1" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                <FaInstagram className="text-2xl" />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/anurag-jaiswal-a96281276/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                <FaLinkedin className="text-2xl" />
+              </a>
+            </li>
           </ul>
         </div>
 
       </div>
       
-      {/* Copyright Section */}
       <div className="text-center mt-8 text-gray-500">
         <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
       </div>
