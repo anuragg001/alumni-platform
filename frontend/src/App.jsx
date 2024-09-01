@@ -1,21 +1,32 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import AlumniList from './components/Alumni/AlumniList';
-import AlumniForm from './components/Alumni/AlumniForm';
-
+import Dashboard from './components/Dashboard';
+import NetworkingList from './components/Networking/NetworkingList';
+import NetworkingForm from './components/Networking/NetworkingForm';
+import FeedbackForm from './components/Feedback/FeedbackForm';
+// other necessary imports...
 
 const App = () => {
   return (
     <Router>
-      <Navbar />
-      <div className="p-4">
+      <div className="App">
         <Switch>
-          <Route exact path="/alumni" component={AlumniList} />
-          <Route path="/alumni/add" component={() => <AlumniForm isEdit={false} />} />
-          <Route path="/alumni/edit/:id" component={() => <AlumniForm isEdit={true} />} />
-          {/* Define routes for Donations, Events, Feedback, Jobs, and Networking */}
-         
+          {/* Dashboard Route */}
+          <Route path="/" exact component={Dashboard} />
+
+          {/* Networking List Route */}
+          <Route path="/networking" exact component={NetworkingList} />
+
+          {/* Add New Networking Connection Route */}
+          <Route path="/networking/new" component={() => <NetworkingForm isEdit={false} />} />
+
+          {/* Edit Existing Networking Connection Route */}
+          <Route path="/networking/edit/:id" component={() => <NetworkingForm isEdit={true} />} />
+
+          {/* Feedback Form Route */}
+          <Route path="/feedback" component={FeedbackForm} />
+
+          {/* Additional routes can go here... */}
         </Switch>
       </div>
     </Router>
