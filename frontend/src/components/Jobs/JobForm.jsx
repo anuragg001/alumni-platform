@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { create, update, getById } from '../../services/api';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 
 const JobForm = ({ isEdit = false }) => {
   const [job, setJob] = useState({ title: '', company: '', description: '', location: '', apply_link: '' });
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     if (isEdit) {
       fetchJob();
     }
-  }, []);
+  }, [isEdit, id]);
 
   const fetchJob = async () => {
-    const response = await getById('jobs', id);
-    setJob(response.data);
+    try {
+      const response = await getById('jobs', id);
+      setJob(response.data);
+    } catch (error) {
+      console.error("Error fetching job:", error);
+    }
   };
 
   const handleChange = (e) => {
@@ -24,12 +29,16 @@ const JobForm = ({ isEdit = false }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEdit) {
-      await update('jobs', id, job);
-    } else {
-      await create('jobs', job);
+    try {
+      if (isEdit) {
+        await update('jobs', id, job);
+      } else {
+        await create('jobs', job);
+      }
+      navigate('/jobs'); 
+    } catch (error) {
+      console.error("Error saving job:", error);
     }
-    history.push('/jobs');
   };
 
   return (

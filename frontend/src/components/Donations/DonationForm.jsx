@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { create, update, getById } from '../../services/api';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const DonationForm = ({ isEdit = false }) => {
   const [donation, setDonation] = useState({ donor_name: '', amount: '' });
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     if (isEdit) {
       fetchDonation();
     }
-  }, []);
+  }, [isEdit, id]); 
 
   const fetchDonation = async () => {
-    const response = await getById('donations', id);
-    setDonation(response.data);
+    try {
+      const response = await getById('donations', id);
+      setDonation(response.data);
+    } catch (error) {
+      console.error("Error fetching donation:", error);
+    }
   };
 
   const handleChange = (e) => {
@@ -24,12 +29,16 @@ const DonationForm = ({ isEdit = false }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEdit) {
-      await update('donations', id, donation);
-    } else {
-      await create('donations', donation);
+    try {
+      if (isEdit) {
+        await update('donations', id, donation);
+      } else {
+        await create('donations', donation);
+      }
+      navigate('/donations'); 
+    } catch (error) {
+      console.error("Error saving donation:", error);
     }
-    history.push('/donations');
   };
 
   return (

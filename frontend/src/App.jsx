@@ -1,33 +1,47 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import DonationList from './components/Donations/DonationList';
+import DonationForm from './components/Donations/DonationForm';
+import EventList from './components/Events/EventList';
+import EventForm from './components/Events/EventForm';
+import FeedbackList from './components/Feedback/FeedbackList';
+import FeedbackForm from './components/Feedback/FeedbackForm';
+import JobList from './components/Jobs/JobList';
+import JobForm from './components/Jobs/JobForm';
 import NetworkingList from './components/Networking/NetworkingList';
 import NetworkingForm from './components/Networking/NetworkingForm';
-import FeedbackForm from './components/Feedback/FeedbackForm';
-// other necessary imports...
 
 const App = () => {
   return (
     <Router>
       <div className="App">
-        <Switch>
-          {/* Dashboard Route */}
-          <Route path="/" exact component={Dashboard} />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
 
-          {/* Networking List Route */}
-          <Route path="/networking" exact component={NetworkingList} />
+         
+          <Route path="/donations" element={<DonationList />} />
+          <Route path="/donations/new" element={<DonationForm />} />
+          <Route path="/donations/edit/:id" element={<DonationForm />} />
 
-          {/* Add New Networking Connection Route */}
-          <Route path="/networking/new" component={() => <NetworkingForm isEdit={false} />} />
+          
+          <Route path="/events" element={<EventList />} />
+          <Route path="/events/new" element={<EventForm />} />
+          <Route path="/events/edit/:id" element={<EventForm />} />
 
-          {/* Edit Existing Networking Connection Route */}
-          <Route path="/networking/edit/:id" component={() => <NetworkingForm isEdit={true} />} />
+         
+          <Route path="/feedback" element={<FeedbackList />} />
+          <Route path="/feedback/new" element={<FeedbackForm />} />
 
-          {/* Feedback Form Route */}
-          <Route path="/feedback" component={FeedbackForm} />
+  
+          <Route path="/jobs" element={<JobList />} />
+          <Route path="/jobs/new" element={<JobForm />} />
+          <Route path="/jobs/edit/:id" element={<JobForm />} />
 
-          {/* Additional routes can go here... */}
-        </Switch>
+          <Route path="/networking" element={<NetworkingList />} />
+          <Route path="/networking/new" element={<NetworkingForm />} />
+          <Route path="/networking/edit/:id" element={<NetworkingForm />} />
+        </Routes>
       </div>
     </Router>
   );

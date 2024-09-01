@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { create, update, getById } from '../../services/api';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 
 const NetworkingForm = ({ isEdit = false }) => {
   const [connection, setConnection] = useState({
@@ -11,13 +12,13 @@ const NetworkingForm = ({ isEdit = false }) => {
   });
 
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isEdit) {
       fetchConnection();
     }
-  }, []);
+  }, [isEdit, id]); 
 
   const fetchConnection = async () => {
     try {
@@ -40,7 +41,7 @@ const NetworkingForm = ({ isEdit = false }) => {
       } else {
         await create('networking', connection);
       }
-      history.push('/networking');
+      navigate('/networking');
     } catch (error) {
       console.error('Error saving connection:', error);
     }

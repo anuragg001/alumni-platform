@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { create, update, getById } from '../../services/api';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const EventForm = ({ isEdit = false }) => {
   const [event, setEvent] = useState({ name: '', date: '', description: '' });
   const { id } = useParams();
-  const history = useHistory();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (isEdit) {
       fetchEvent();
     }
-  }, []);
-
+  }, [isEdit, id]); 
   const fetchEvent = async () => {
-    const response = await getById('events', id);
-    setEvent(response.data);
+    try {
+      const response = await getById('events', id);
+      setEvent(response.data);
+    } catch (error) {
+      console.error("Error fetching event:", error);
+    }
   };
 
   const handleChange = (e) => {
@@ -24,12 +27,16 @@ const EventForm = ({ isEdit = false }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEdit) {
-      await update('events', id, event);
-    } else {
-      await create('events', event);
+    try {
+      if (isEdit) {
+        await update('events', id, event);
+      } else {
+        await create('events', event);
+      }
+      navigate('/events'); 
+    } catch (error) {
+      console.error("Error saving event:", error);
     }
-    history.push('/events');
   };
 
   return (

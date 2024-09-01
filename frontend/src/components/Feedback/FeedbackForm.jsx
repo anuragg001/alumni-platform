@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { create } from '../../services/api';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const FeedbackForm = () => {
   const [feedback, setFeedback] = useState({ name: '', email: '', message: '' });
-  const history = useHistory();
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFeedback({ ...feedback, [e.target.name]: e.target.value });
@@ -12,8 +12,12 @@ const FeedbackForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await create('feedback', feedback);
-    history.push('/feedback'); // Redirect to feedback list after submission
+    try {
+      await create('feedback', feedback);
+      navigate('/feedback');
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+    }
   };
 
   return (
