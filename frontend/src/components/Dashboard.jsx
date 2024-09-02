@@ -5,7 +5,7 @@ import { FaHandHoldingUsd, FaCalendarAlt, FaCommentDots, FaBriefcase, FaNetworkW
 const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Menu Bar */}
+    
       <nav className="bg-gray-800 p-4">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-2">
@@ -24,8 +24,6 @@ const Dashboard = () => {
           </div>
         </div>
       </nav>
-
-      {/* Enhanced Header */}
       <header className="bg-gray-800 text-white py-16 px-4">
         <div className="container mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-teal-400">
@@ -36,8 +34,6 @@ const Dashboard = () => {
           </p>
         </div>
       </header>
-
-      {/* Dashboard Content */}
       <div className="container mx-auto p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
