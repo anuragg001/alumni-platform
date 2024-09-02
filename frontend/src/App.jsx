@@ -13,6 +13,8 @@ import JobForm from './components/Jobs/JobForm';
 import NetworkingList from './components/Networking/NetworkingList';
 import NetworkingForm from './components/Networking/NetworkingForm';
 import Footer from './Footer'; 
+import Login from './components/Login';
+import Register from './components/Register';
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
       <div className="flex flex-col min-h-screen">
         <main className="flex-grow">
           <Routes>
+            <Route path='/Register' element={<Register/>}></Route>
+            <Route path='/Login' element={<Login/>}></Route>
             <Route path="/" element={<Dashboard />} />
             <Route path="/donations" element={<DonationList />} />
             <Route path="/donations/new" element={<DonationForm />} />

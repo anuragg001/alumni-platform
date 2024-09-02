@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaHandHoldingUsd, FaCalendarAlt, FaCommentDots, FaBriefcase, FaNetworkWired } from 'react-icons/fa';
+import MenuIcon from './MenuIcon'; // Import the MenuIcon component
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 p-6">
+    <div className="relative min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 p-6">
+      <MenuIcon />
       <h1 className="text-5xl font-extrabold mb-12 text-center text-white drop-shadow-lg">Alumni Management Dashboard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         <Link to="/donations" className="bg-gradient-to-r from-teal-800 via-teal-700 to-teal-600 text-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 hover:shadow-2xl">
@@ -36,7 +38,7 @@ const Dashboard = () => {
             </div>
           </div>
         </Link>
-
+        
         <Link to="/jobs" className="bg-gradient-to-r from-blue-800 via-blue-700 to-blue-600 text-white shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 hover:shadow-2xl">
           <div className="flex items-center space-x-4">
             <FaBriefcase className="text-white text-4xl" />
