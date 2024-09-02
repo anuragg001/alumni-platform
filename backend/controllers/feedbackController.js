@@ -1,6 +1,6 @@
 const Feedback = require('../models/Feedback');
 
-// Get all feedback
+
 exports.getFeedback = async (req, res) => {
   try {
     const feedback = await Feedback.find().populate('user', 'name email');
@@ -10,7 +10,7 @@ exports.getFeedback = async (req, res) => {
   }
 };
 
-// Submit new feedback
+
 exports.createFeedback = async (req, res) => {
   const { comments, rating } = req.body;
 

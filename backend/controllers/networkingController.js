@@ -1,6 +1,6 @@
 const Network = require('../models/Network');
 
-// Get all networks
+
 exports.getNetworks = async (req, res) => {
   try {
     const networks = await Network.find().populate('alumni', 'name email').populate('connections', 'name email');
@@ -10,7 +10,7 @@ exports.getNetworks = async (req, res) => {
   }
 };
 
-// Create a new network
+
 exports.createNetwork = async (req, res) => {
   const { alumni, connections } = req.body;
 

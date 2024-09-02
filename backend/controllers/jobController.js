@@ -1,6 +1,6 @@
 const Job = require('../models/Job');
 
-// Get all jobs
+
 exports.getJobs = async (req, res) => {
   try {
     const jobs = await Job.find();
@@ -10,7 +10,7 @@ exports.getJobs = async (req, res) => {
   }
 };
 
-// Create a new job listing
+
 exports.createJob = async (req, res) => {
   const { title, company, location, description, requirements, applicationDeadline } = req.body;
 

@@ -1,6 +1,6 @@
 const Donation = require('../models/Donation');
 
-// Get all donations
+
 exports.getDonations = async (req, res) => {
   try {
     const donations = await Donation.find();
@@ -10,7 +10,7 @@ exports.getDonations = async (req, res) => {
   }
 };
 
-// Create a new donation
+
 exports.createDonation = async (req, res) => {
   const { donorName, amount, purpose } = req.body;
 

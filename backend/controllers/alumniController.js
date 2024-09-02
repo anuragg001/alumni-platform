@@ -1,6 +1,6 @@
 const Alumni = require('../models/Alumni');
 
-// Get all alumni
+
 exports.getAlumni = async (req, res) => {
   try {
     const alumni = await Alumni.find();
@@ -10,7 +10,7 @@ exports.getAlumni = async (req, res) => {
   }
 };
 
-// Create a new alumni record
+
 exports.createAlumni = async (req, res) => {
   const { name, graduationYear, email, jobTitle, company } = req.body;
 

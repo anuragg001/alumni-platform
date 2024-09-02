@@ -22,7 +22,6 @@ const cors = require('cors');
 app.use(cors());
 
 
-// Routes
 app.use('/api/alumni', alumniRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/donations', donationRoutes);

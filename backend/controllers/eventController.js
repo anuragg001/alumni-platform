@@ -1,6 +1,5 @@
 const Event = require('../models/Event');
 
-// Get all events
 exports.getEvents = async (req, res) => {
   try {
     const events = await Event.find().populate('attendees', 'name email');
@@ -10,7 +9,7 @@ exports.getEvents = async (req, res) => {
   }
 };
 
-// Create a new event
+
 exports.createEvent = async (req, res) => {
   const { title, description, date, location } = req.body;
 
