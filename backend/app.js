@@ -16,11 +16,7 @@ const jobRoutes = require('./routes/jobRoutes');
 const networkingRoutes = require('./routes/networkingRoutes');
 
 const app = express();
-
 app.use(express.json());
-const cors = require('cors');
-app.use(cors());
-
 
 app.use('/api/alumni', alumniRoutes);
 app.use('/api/auth', authRoutes);
