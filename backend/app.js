@@ -1,10 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
 
 dotenv.config();
-
-connectDB("mongodb+srv://anuraggjaiswal:anuragjaiswal1122@cluster0.yfdz96s.mongodb.net/");
 
 
 const alumniRoutes = require('./routes/alumniRoutes');
