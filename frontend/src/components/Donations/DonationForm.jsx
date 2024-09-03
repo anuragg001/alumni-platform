@@ -1,7 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { create, update, getById } from '../../services/api';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+
+// Mock data
+const mockDonations = [
+  { id: '1', donor_name: 'John Doe', amount: '100' },
+  { id: '2', donor_name: 'Jane Smith', amount: '200' },
+];
+
+const getById = (id) => {
+  return new Promise((resolve, reject) => {
+    const donation = mockDonations.find((donation) => donation.id === id);
+    if (donation) {
+      resolve({ data: donation });
+    } else {
+      reject(new Error('Donation not found'));
+    }
+  });
+};
+
+const create = (donation) => {
+  return new Promise((resolve) => {
+    const newDonation = { id: (mockDonations.length + 1).toString(), ...donation };
+    mockDonations.push(newDonation);
+    resolve(newDonation);
+  });
+};
+
+const update = (id, donation) => {
+  return new Promise((resolve, reject) => {
+    const index = mockDonations.findIndex((donation) => donation.id === id);
+    if (index !== -1) {
+      mockDonations[index] = { id, ...donation };
+      resolve(mockDonations[index]);
+    } else {
+      reject(new Error('Donation not found'));
+    }
+  });
+};
 
 const DonationForm = ({ isEdit = false }) => {
   const [donation, setDonation] = useState({ donor_name: '', amount: '' });
@@ -16,7 +52,7 @@ const DonationForm = ({ isEdit = false }) => {
 
   const fetchDonation = async () => {
     try {
-      const response = await getById('donations', id);
+      const response = await getById(id);
       setDonation(response.data);
     } catch (error) {
       console.error("Error fetching donation:", error);
@@ -31,9 +67,9 @@ const DonationForm = ({ isEdit = false }) => {
     e.preventDefault();
     try {
       if (isEdit) {
-        await update('donations', id, donation);
+        await update(id, donation);
       } else {
-        await create('donations', donation);
+        await create(donation);
       }
       navigate('/donations'); 
     } catch (error) {

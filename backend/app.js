@@ -1,8 +1,10 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors= require('cors')
 
+const app = express();
 dotenv.config();
-
+app.use(cors());
 
 const alumniRoutes = require('./routes/alumniRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -12,12 +14,8 @@ const feedbackRoutes = require('./routes/feedbackRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const networkingRoutes = require('./routes/networkingRoutes');
 
-const app = express();
 
 app.use(express.json());
-const cors = require('cors');
-app.use(cors());
-
 
 app.use('/api/alumni', alumniRoutes);
 app.use('/api/auth', authRoutes);

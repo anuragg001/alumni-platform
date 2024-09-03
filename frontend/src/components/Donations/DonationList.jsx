@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { getAll, remove } from '../../services/api';
 
 const DonationList = () => {
   const [donations, setDonations] = useState([]);
@@ -8,14 +7,21 @@ const DonationList = () => {
     fetchDonations();
   }, []);
 
-  const fetchDonations = async () => {
-    const response = await getAll('donations');
-    setDonations(response.data);
+  const fetchDonations = () => {
+    // Mock data instead of API call
+    const mockDonations = [
+      { id: 1, donor_name: 'Anurag Jaiswal', amount: 100 },
+      { id: 2, donor_name: 'Aman verma ', amount: 50 },
+      { id: 3, donor_name: 'Aysuh Dubey', amount: 75 },
+      // Add more mock donations here
+    ];
+    setDonations(mockDonations);
   };
 
-  const handleDelete = async (id) => {
-    await remove('donations', id);
-    fetchDonations();
+  const handleDelete = (id) => {
+    // Simulate delete action on mock data
+    const filteredDonations = donations.filter((donation) => donation.id !== id);
+    setDonations(filteredDonations);
   };
 
   return (

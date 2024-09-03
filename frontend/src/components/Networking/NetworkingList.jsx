@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getAll, remove } from '../../services/api';
+
+// Mock data
+const mockConnections = [
+  { id: 1, name: 'Alice Johnson', profession: 'Engineer' },
+  { id: 2, name: 'Bob Smith', profession: 'Designer' },
+  { id: 3, name: 'Carol White', profession: 'Manager' },
+];
 
 const NetworkingList = () => {
   const [connections, setConnections] = useState([]);
@@ -8,14 +14,15 @@ const NetworkingList = () => {
     fetchConnections();
   }, []);
 
-  const fetchConnections = async () => {
-    const response = await getAll('networking');
-    setConnections(response.data);
+  const fetchConnections = () => {
+    // Simulate fetching connections from mock data
+    setConnections(mockConnections);
   };
 
-  const handleDelete = async (id) => {
-    await remove('networking', id);
-    fetchConnections();
+  const handleDelete = (id) => {
+    // Simulate deleting a connection
+    const updatedConnections = connections.filter((connection) => connection.id !== id);
+    setConnections(updatedConnections);
   };
 
   return (
