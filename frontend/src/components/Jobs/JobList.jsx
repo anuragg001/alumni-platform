@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAll, remove } from '../../services/api';
+import { getAll, remove } from '../../services/api'; 
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -9,13 +9,21 @@ const JobList = () => {
   }, []);
 
   const fetchJobs = async () => {
-    const response = await getAll('jobs');
-    setJobs(response.data);
+    try {
+      const response = await getAll('jobs'); 
+      setJobs(response.data); 
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+    }
   };
 
   const handleDelete = async (id) => {
-    await remove('jobs', id);
-    fetchJobs();
+    try {
+      await remove('jobs', id); 
+      fetchJobs();
+    } catch (error) {
+      console.error('Error deleting job:', error);
+    }
   };
 
   return (
@@ -23,11 +31,14 @@ const JobList = () => {
       <h1 className="text-2xl font-bold mb-4">Job Opportunities</h1>
       <ul className="space-y-2">
         {jobs.map((job) => (
-          <li key={job.id} className="flex justify-between p-2 bg-gray-100 rounded">
-            <span>{job.title} - {job.company}</span>
+          <li key={job.id} className="flex justify-between p-4 bg-gray-100 rounded-lg shadow-sm">
+            <div className="flex-grow">
+              <h3 className="text-lg font-semibold mb-1">{job.title}</h3>
+              <p className="text-gray-700">{job.company}</p>
+            </div>
             <button 
               onClick={() => handleDelete(job.id)} 
-              className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-700"
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
             >
               Delete
             </button>
