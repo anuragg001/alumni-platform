@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { create, update, getById } from '../../services/api';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+
+const mockEvents = [
+  { id: 1, name: 'Event 1', date: '2024-09-01', description: 'Description for Event 1' },
+  { id: 2, name: 'Event 2', date: '2024-09-02', description: 'Description for Event 2' },
+  { id: 3, name: 'Event 3', date: '2024-09-03', description: 'Description for Event 3' },
+];
 
 const EventForm = ({ isEdit = false }) => {
   const [event, setEvent] = useState({ name: '', date: '', description: '' });
   const { id } = useParams();
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (isEdit) {
+    if (isEdit && id) {
       fetchEvent();
     }
-  }, [isEdit, id]); 
-  const fetchEvent = async () => {
-    try {
-      const response = await getById('events', id);
-      setEvent(response.data);
-    } catch (error) {
-      console.error("Error fetching event:", error);
+  }, [isEdit, id]);
+
+  const fetchEvent = () => {
+    // Simulate fetching event from mock data
+    const eventData = mockEvents.find((event) => event.id === parseInt(id));
+    if (eventData) {
+      setEvent(eventData);
     }
   };
 
@@ -25,18 +30,11 @@ const EventForm = ({ isEdit = false }) => {
     setEvent({ ...event, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      if (isEdit) {
-        await update('events', id, event);
-      } else {
-        await create('events', event);
-      }
-      navigate('/events'); 
-    } catch (error) {
-      console.error("Error saving event:", error);
-    }
+    // Simulate save action with mock data
+    console.log(isEdit ? 'Updating event' : 'Creating new event', event);
+    navigate('/events');
   };
 
   return (

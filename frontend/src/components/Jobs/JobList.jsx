@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getAll, remove } from '../../services/api'; 
+
+// Mock data
+const mockJobs = [
+  { id: 1, title: 'Software Engineer', company: 'Tech Corp' },
+  { id: 2, title: 'Product Manager', company: 'Innovate Ltd' },
+  { id: 3, title: 'Data Analyst', company: 'Data Solutions' },
+  // Add more mock jobs here if needed
+];
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -8,22 +15,15 @@ const JobList = () => {
     fetchJobs();
   }, []);
 
-  const fetchJobs = async () => {
-    try {
-      const response = await getAll('jobs'); 
-      setJobs(response.data); 
-    } catch (error) {
-      console.error('Error fetching jobs:', error);
-    }
+  const fetchJobs = () => {
+    // Simulate fetching jobs from mock data
+    setJobs(mockJobs);
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await remove('jobs', id); 
-      fetchJobs();
-    } catch (error) {
-      console.error('Error deleting job:', error);
-    }
+  const handleDelete = (id) => {
+    // Simulate delete action on mock data
+    const filteredJobs = jobs.filter(job => job.id !== id);
+    setJobs(filteredJobs);
   };
 
   return (

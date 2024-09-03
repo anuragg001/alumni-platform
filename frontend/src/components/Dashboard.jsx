@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaHandHoldingUsd, FaCalendarAlt, FaCommentDots, FaBriefcase, FaNetworkWired, FaUser, FaSignInAlt, FaGraduationCap } from 'react-icons/fa';
+import { FaHandHoldingUsd, FaCalendarAlt, FaCommentDots, FaBriefcase, FaNetworkWired, FaUser, FaSignInAlt, FaGraduationCap, FaPlus, FaEdit } from 'react-icons/fa';
 
 const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-    
       <nav className="bg-gray-800 p-4">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-2">
@@ -43,15 +42,25 @@ const Dashboard = () => {
             { to: "/jobs", icon: FaBriefcase, title: "Job Opportunities", desc: "Post and manage job listings." },
             { to: "/networking", icon: FaNetworkWired, title: "Networking", desc: "Connect with alumni and build networks." },
           ].map((item, index) => (
-            <Link key={index} to={item.to} className="bg-gray-800 rounded-lg p-6 transition-all duration-300 transform hover:scale-105 hover:bg-gray-700 border border-gray-700">
-              <div className="flex items-center space-x-4">
+            <div key={index} className="bg-gray-800 rounded-lg p-6 transition-all duration-300 hover:bg-gray-700 border border-gray-700">
+              <div className="flex items-center space-x-4 mb-4">
                 <item.icon className="text-4xl text-teal-500" />
                 <div>
                   <h3 className="text-xl font-semibold">{item.title}</h3>
                   <p className="text-sm text-gray-400">{item.desc}</p>
                 </div>
               </div>
-            </Link>
+              <div className="flex justify-between mt-4">
+                <Link to={item.to} className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                  <FaEdit className="mr-2" />
+                  View All
+                </Link>
+                <Link to={`${item.to}/new`} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                  <FaPlus className="mr-2" />
+                  Add New
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
       </div>

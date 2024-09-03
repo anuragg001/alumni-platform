@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { create } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+
+// Mock data (for simulation purposes)
+const mockFeedbacks = [
+  { id: 1, name: 'John Doe', email: 'john.doe@example.com', message: 'Great service!' },
+  { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com', message: 'Loved it!' },
+  // Add more mock feedback here if needed
+];
 
 const FeedbackForm = () => {
   const [feedback, setFeedback] = useState({ name: '', email: '', message: '' });
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFeedback({ ...feedback, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await create('feedback', feedback);
-      navigate('/feedback');
-    } catch (error) {
-      console.error("Error submitting feedback:", error);
-    }
+    // Simulate saving feedback
+    console.log('Submitting feedback:', feedback);
+    // Simulate adding to mock data (optional, for simulation only)
+    mockFeedbacks.push({ ...feedback, id: mockFeedbacks.length + 1 });
+    navigate('/feedback'); // Navigate after "submission"
   };
 
   return (

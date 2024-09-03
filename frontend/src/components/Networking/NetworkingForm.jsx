@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { create, update, getById } from '../../services/api';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+
+// Mock data
+const mockConnections = [
+  { id: 1, name: 'Alice Johnson', profession: 'Engineer', email: 'alice@example.com', location: 'New York' },
+  { id: 2, name: 'Bob Smith', profession: 'Designer', email: 'bob@example.com', location: 'San Francisco' },
+  { id: 3, name: 'Carol White', profession: 'Manager', email: 'carol@example.com', location: 'Chicago' },
+];
 
 const NetworkingForm = ({ isEdit = false }) => {
   const [connection, setConnection] = useState({
@@ -18,14 +24,13 @@ const NetworkingForm = ({ isEdit = false }) => {
     if (isEdit) {
       fetchConnection();
     }
-  }, [isEdit, id]); 
+  }, [isEdit, id]);
 
-  const fetchConnection = async () => {
-    try {
-      const response = await getById('networking', id);
-      setConnection(response.data);
-    } catch (error) {
-      console.error('Error fetching connection:', error);
+  const fetchConnection = () => {
+    // Simulate fetching connection from mock data
+    const connectionData = mockConnections.find((conn) => conn.id === parseInt(id));
+    if (connectionData) {
+      setConnection(connectionData);
     }
   };
 
@@ -33,18 +38,15 @@ const NetworkingForm = ({ isEdit = false }) => {
     setConnection({ ...connection, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      if (isEdit) {
-        await update('networking', id, connection);
-      } else {
-        await create('networking', connection);
-      }
-      navigate('/networking');
-    } catch (error) {
-      console.error('Error saving connection:', error);
+    // Simulate save action with mock data
+    if (isEdit) {
+      console.log('Updating connection', connection);
+    } else {
+      console.log('Creating new connection', connection);
     }
+    navigate('/networking');
   };
 
   return (

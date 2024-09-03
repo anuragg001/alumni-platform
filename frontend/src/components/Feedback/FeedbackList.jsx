@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getAll, remove } from '../../services/api';
+
+// Mock data
+const mockFeedbacks = [
+  { id: 1, name: 'John Doe', message: 'Great service!' },
+  { id: 2, name: 'Jane Smith', message: 'Loved it!' },
+  { id: 3, name: 'Alice Johnson', message: 'Could be better.' },
+  // Add more mock feedback here if needed
+];
 
 const FeedbackList = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -8,17 +15,16 @@ const FeedbackList = () => {
     fetchFeedbacks();
   }, []);
 
-  const fetchFeedbacks = async () => {
-    const response = await getAll('feedback');
-    setFeedbacks(response.data);
+  const fetchFeedbacks = () => {
+    // Simulate fetching feedbacks from mock data
+    setFeedbacks(mockFeedbacks);
   };
 
-  const handleDelete = async (id) => {
-    await remove('feedback', id);
-    fetchFeedbacks();
+  const handleDelete = (id) => {
+    // Simulate delete action on mock data
+    const filteredFeedbacks = feedbacks.filter(feedback => feedback.id !== id);
+    setFeedbacks(filteredFeedbacks);
   };
-
-
 
   return (
     <div className="container mx-auto p-4">

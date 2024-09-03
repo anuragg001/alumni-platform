@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { create, update, getById } from '../../services/api';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+
+// Mock data
+const mockJobs = [
+  { id: 1, title: 'Software Engineer', company: 'Tech Corp', description: 'Develop and maintain software.', location: 'San Francisco', apply_link: 'https://techcorp.com/careers/1' },
+  { id: 2, title: 'Product Manager', company: 'Innovate Ltd', description: 'Manage product development.', location: 'New York', apply_link: 'https://innovateltd.com/careers/2' },
+  // Add more mock jobs here if needed
+];
 
 const JobForm = ({ isEdit = false }) => {
   const [job, setJob] = useState({ title: '', company: '', description: '', location: '', apply_link: '' });
@@ -14,12 +20,11 @@ const JobForm = ({ isEdit = false }) => {
     }
   }, [isEdit, id]);
 
-  const fetchJob = async () => {
-    try {
-      const response = await getById('jobs', id);
-      setJob(response.data);
-    } catch (error) {
-      console.error("Error fetching job:", error);
+  const fetchJob = () => {
+    // Simulate fetching job from mock data
+    const jobData = mockJobs.find((job) => job.id === parseInt(id));
+    if (jobData) {
+      setJob(jobData);
     }
   };
 
@@ -27,18 +32,11 @@ const JobForm = ({ isEdit = false }) => {
     setJob({ ...job, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      if (isEdit) {
-        await update('jobs', id, job);
-      } else {
-        await create('jobs', job);
-      }
-      navigate('/jobs'); 
-    } catch (error) {
-      console.error("Error saving job:", error);
-    }
+    // Simulate save action with mock data
+    console.log(isEdit ? 'Updating job' : 'Creating new job', job);
+    navigate('/jobs');
   };
 
   return (
