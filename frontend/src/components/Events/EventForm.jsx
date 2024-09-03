@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const mockEvents = [
-  { id: 1, name: 'Event 1', date: '2024-09-01', description: 'Description for Event 1' },
-  { id: 2, name: 'Event 2', date: '2024-09-02', description: 'Description for Event 2' },
-  { id: 3, name: 'Event 3', date: '2024-09-03', description: 'Description for Event 3' },
+  { id: 1, name: 'Event 1', date: '2024-09-01', description: 'description' },
+  { id: 2, name: 'Event 2', date: '2024-09-02', description: 'Description of the event' },
+  { id: 3, name: 'Event 3', date: '2024-09-03', description: 'Description of the evenet ' },
 ];
 
 const EventForm = ({ isEdit = false }) => {
@@ -19,7 +19,7 @@ const EventForm = ({ isEdit = false }) => {
   }, [isEdit, id]);
 
   const fetchEvent = () => {
-    // Simulate fetching event from mock data
+
     const eventData = mockEvents.find((event) => event.id === parseInt(id));
     if (eventData) {
       setEvent(eventData);
@@ -32,7 +32,6 @@ const EventForm = ({ isEdit = false }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate save action with mock data
     console.log(isEdit ? 'Updating event' : 'Creating new event', event);
     navigate('/events');
   };

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Mock data (for simulation purposes)
+
 const mockFeedbacks = [
-  { id: 1, name: 'John Doe', email: 'john.doe@example.com', message: 'Great service!' },
-  { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com', message: 'Loved it!' },
-  // Add more mock feedback here if needed
+  { id: 1, name: 'Anurag jaiswal', email: 'anurag@gmail.com', message: 'Great service' },
+  { id: 2, name: 'prashant Pathak', email: 'prashant@example.com', message: 'Loved it' },
 ];
 
 const FeedbackForm = () => {
@@ -18,9 +17,7 @@ const FeedbackForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate saving feedback
-    console.log('Submitting feedback:', feedback);
-    // Simulate adding to mock data (optional, for simulation only)
+
     mockFeedbacks.push({ ...feedback, id: mockFeedbacks.length + 1 });
     navigate('/feedback'); // Navigate after "submission"
   };

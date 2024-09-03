@@ -4,7 +4,7 @@ const mockEvents = [
   { id: 1, name: 'Event 1', date: '2024-09-01' },
   { id: 2, name: 'Event 2', date: '2024-09-02' },
   { id: 3, name: 'Event 3', date: '2024-09-03' },
-  // Add more mock events here
+ 
 ];
 
 const EventList = () => {
@@ -15,12 +15,10 @@ const EventList = () => {
   }, []);
 
   const fetchEvents = () => {
-    // Simulate fetching events from mock data
     setEvents(mockEvents);
   };
 
   const handleDelete = (id) => {
-    // Simulate delete action on mock data
     const filteredEvents = events.filter(event => event.id !== id);
     setEvents(filteredEvents);
   };

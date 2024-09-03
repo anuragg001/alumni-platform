@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-// Mock data
+
 const mockConnections = [
-  { id: 1, name: 'Alice Johnson', profession: 'Engineer' },
-  { id: 2, name: 'Bob Smith', profession: 'Designer' },
-  { id: 3, name: 'Carol White', profession: 'Manager' },
+  { id: 1, name: 'Anurag jaiswal', profession: 'Engineer' },
+  { id: 2, name: 'Aman verma', profession: 'Designer' },
+  { id: 3, name: 'Ayush dubey', profession: 'Manager' },
 ];
 
 const NetworkingList = () => {
@@ -15,12 +15,12 @@ const NetworkingList = () => {
   }, []);
 
   const fetchConnections = () => {
-    // Simulate fetching connections from mock data
+   
     setConnections(mockConnections);
   };
 
   const handleDelete = (id) => {
-    // Simulate deleting a connection
+
     const updatedConnections = connections.filter((connection) => connection.id !== id);
     setConnections(updatedConnections);
   };

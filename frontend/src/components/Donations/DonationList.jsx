@@ -8,18 +8,17 @@ const DonationList = () => {
   }, []);
 
   const fetchDonations = () => {
-    // Mock data instead of API call
+   
     const mockDonations = [
       { id: 1, donor_name: 'Anurag Jaiswal', amount: 100 },
       { id: 2, donor_name: 'Aman verma ', amount: 50 },
       { id: 3, donor_name: 'Aysuh Dubey', amount: 75 },
-      // Add more mock donations here
+
     ];
     setDonations(mockDonations);
   };
 
   const handleDelete = (id) => {
-    // Simulate delete action on mock data
     const filteredDonations = donations.filter((donation) => donation.id !== id);
     setDonations(filteredDonations);
   };

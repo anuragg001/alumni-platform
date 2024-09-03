@@ -1,16 +1,17 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api'; // Make sure your backend is running
+const API_URL = 'http://localhost:5000/api'; //i wiil change it later 
+
 
 const handleError = (error) => {
   if (error.response) {
-    // Server responded with a status other than 2xx
+  
     console.error('Error response:', error.response);
   } else if (error.request) {
-    // Request was made, but no response received
+ 
     console.error('Error request:', error.request);
   } else {
-    // Something else happened
+
     console.error('Error message:', error.message);
   }
   throw error;

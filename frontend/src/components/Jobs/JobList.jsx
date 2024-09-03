@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 // Mock data
 const mockJobs = [
-  { id: 1, title: 'Software Engineer', company: 'Tech Corp' },
-  { id: 2, title: 'Product Manager', company: 'Innovate Ltd' },
+  { id: 1, title: 'Software Engineer', company: 'google' },
+  { id: 2, title: 'Product Manager', company: 'facebook' },
   { id: 3, title: 'Data Analyst', company: 'Data Solutions' },
-  // Add more mock jobs here if needed
+  
 ];
 
 const JobList = () => {
@@ -16,12 +16,11 @@ const JobList = () => {
   }, []);
 
   const fetchJobs = () => {
-    // Simulate fetching jobs from mock data
     setJobs(mockJobs);
   };
 
   const handleDelete = (id) => {
-    // Simulate delete action on mock data
+
     const filteredJobs = jobs.filter(job => job.id !== id);
     setJobs(filteredJobs);
   };

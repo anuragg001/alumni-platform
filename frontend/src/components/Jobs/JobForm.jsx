@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-// Mock data
+
 const mockJobs = [
-  { id: 1, title: 'Software Engineer', company: 'Tech Corp', description: 'Develop and maintain software.', location: 'San Francisco', apply_link: 'https://techcorp.com/careers/1' },
-  { id: 2, title: 'Product Manager', company: 'Innovate Ltd', description: 'Manage product development.', location: 'New York', apply_link: 'https://innovateltd.com/careers/2' },
-  // Add more mock jobs here if needed
+  { id: 1, title: 'Software Engineer', company: 'Facebook', description: 'Develop and maintain software.', location: 'Banglore', apply_link: 'https://facebook.com/careers/1' },
+  { id: 2, title: 'Product Manager', company: 'Google', description: 'Manage product development.', location: 'delhi', apply_link: 'https://google.com/careers/2' },
+
 ];
 
 const JobForm = ({ isEdit = false }) => {
@@ -21,7 +21,6 @@ const JobForm = ({ isEdit = false }) => {
   }, [isEdit, id]);
 
   const fetchJob = () => {
-    // Simulate fetching job from mock data
     const jobData = mockJobs.find((job) => job.id === parseInt(id));
     if (jobData) {
       setJob(jobData);
@@ -34,7 +33,6 @@ const JobForm = ({ isEdit = false }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate save action with mock data
     console.log(isEdit ? 'Updating job' : 'Creating new job', job);
     navigate('/jobs');
   };

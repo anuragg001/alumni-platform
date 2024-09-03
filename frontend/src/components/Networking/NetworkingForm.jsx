@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 // Mock data
 const mockConnections = [
-  { id: 1, name: 'Alice Johnson', profession: 'Engineer', email: 'alice@example.com', location: 'New York' },
-  { id: 2, name: 'Bob Smith', profession: 'Designer', email: 'bob@example.com', location: 'San Francisco' },
-  { id: 3, name: 'Carol White', profession: 'Manager', email: 'carol@example.com', location: 'Chicago' },
+  { id: 1, name: 'Anurag jaiswal', profession: 'Engineer', email: 'anurag@example.com', location: 'delhi' },
+  { id: 2, name: 'Aman verma', profession: 'Designer', email: 'aman@example.com', location: 'mumbai' },
+  { id: 3, name: 'Ayush dubey', profession: 'Manager', email: 'ayush@example.com', location: 'banglore' },
 ];
 
 const NetworkingForm = ({ isEdit = false }) => {
@@ -27,7 +27,6 @@ const NetworkingForm = ({ isEdit = false }) => {
   }, [isEdit, id]);
 
   const fetchConnection = () => {
-    // Simulate fetching connection from mock data
     const connectionData = mockConnections.find((conn) => conn.id === parseInt(id));
     if (connectionData) {
       setConnection(connectionData);
@@ -40,7 +39,6 @@ const NetworkingForm = ({ isEdit = false }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate save action with mock data
     if (isEdit) {
       console.log('Updating connection', connection);
     } else {

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-// Mock data
+
 const mockDonations = [
-  { id: '1', donor_name: 'John Doe', amount: '100' },
-  { id: '2', donor_name: 'Jane Smith', amount: '200' },
+  { id: '1', donor_name: 'Nitesh Triphati', amount: '100' },
+  { id: '2', donor_name: 'Abhishek Pandey', amount: '200' },
 ];
 
 const getById = (id) => {

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 // Mock data
 const mockFeedbacks = [
-  { id: 1, name: 'John Doe', message: 'Great service!' },
-  { id: 2, name: 'Jane Smith', message: 'Loved it!' },
-  { id: 3, name: 'Alice Johnson', message: 'Could be better.' },
-  // Add more mock feedback here if needed
+  { id: 1, name: 'Aman verma', message: 'Great service!' },
+  { id: 2, name: 'Abhishek pandey', message: 'Loved it!' },
+  { id: 3, name: 'Nitesh tiwari', message: 'Could be better.' },
+
 ];
 
 const FeedbackList = () => {
@@ -16,12 +16,12 @@ const FeedbackList = () => {
   }, []);
 
   const fetchFeedbacks = () => {
-    // Simulate fetching feedbacks from mock data
+
     setFeedbacks(mockFeedbacks);
   };
 
   const handleDelete = (id) => {
-    // Simulate delete action on mock data
+
     const filteredFeedbacks = feedbacks.filter(feedback => feedback.id !== id);
     setFeedbacks(filteredFeedbacks);
   };
