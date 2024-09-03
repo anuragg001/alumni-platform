@@ -1,6 +1,5 @@
 const Job = require('../models/Job');
 
-
 exports.getJobs = async (req, res) => {
   try {
     const jobs = await Job.find();
@@ -9,7 +8,6 @@ exports.getJobs = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
-
 
 exports.createJob = async (req, res) => {
   const { title, company, location, description, requirements, applicationDeadline } = req.body;
